@@ -1,0 +1,28 @@
+.stack {
+  position: relative;
+}
+
+.card {
+  position: relative;
+  transform-origin: top center;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  opacity: 0;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+@media (max-width: 900px) {
+  .card {
+    transform: none !important;
+  }
+  .overlay {
+    display: none;
+  }
+}

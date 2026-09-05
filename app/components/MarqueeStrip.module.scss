@@ -1,0 +1,33 @@
+.strip {
+  background: #0f1a2a;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  padding: 22px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  gap: 0;
+}
+
+.set {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding-right: 28px;
+  white-space: nowrap;
+}
+
+.item {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.dot {
+  color: var(--purple-light);
+}

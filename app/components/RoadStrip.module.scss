@@ -1,0 +1,56 @@
+.road {
+  position: relative;
+  height: 90px;
+  background: linear-gradient(180deg, #6b7280 0%, #4b5563 45%, #374151 100%);
+  overflow: hidden;
+  z-index: 1;
+}
+
+.laneLine {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transform: translateY(-50%);
+  display: flex;
+  gap: 40px;
+  width: max-content;
+}
+
+.dash {
+  width: 60px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.75);
+  border-radius: 2px;
+}
+
+.edge {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.edgeTop {
+  top: 6px;
+}
+
+.edgeBottom {
+  bottom: 6px;
+}
+
+.truck {
+  position: absolute;
+  top: 50%;
+  left: -260px;
+  transform: translateY(-50%);
+  width: 220px;
+}
+
+.truckSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+}

@@ -1,0 +1,32 @@
+.section {
+  padding: 90px 0;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 36px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.logo {
+  width: 96px;
+  height: 64px;
+  border-radius: 10px;
+  background: #f1f1f1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}

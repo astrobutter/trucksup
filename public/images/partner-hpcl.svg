@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="128" viewBox="0 0 192 128">
+  <rect width="192" height="128" fill="#f1f1f1"/>
+  <g stroke="#1f2937" stroke-opacity="0.25" stroke-width="1">
+    <line x1="0" y1="0" x2="192" y2="128"/>
+    <line x1="192" y1="0" x2="0" y2="128"/>
+  </g>
+  <rect x="0.5" y="0.5" width="191" height="127" fill="none" stroke="#1f2937" stroke-opacity="0.35"/>
+  <text x="50%" y="50%" fill="#1f2937" font-family="Arial, sans-serif" font-size="14" text-anchor="middle" dominant-baseline="middle">HPCL</text>
+</svg>

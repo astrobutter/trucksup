@@ -1,0 +1,81 @@
+
+> lfo-dashboard@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.25
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.7:3000
+
+ ✓ Starting...
+ ✓ Ready in 9s
+ ○ Compiling / ...
+Request timed out after 3000ms
+
+Retrying 1/3...
+Request timed out after 3000ms
+
+Retrying 1/3...
+ ✓ Compiled / in 20.4s (789 modules)
+ HEAD / 200 in 21097ms
+ GET / 200 in 20812ms
+ GET / 200 in 152ms
+ GET / 200 in 245ms
+ GET / 200 in 295ms
+ ✓ Compiled in 631ms (622 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ⨯ ReferenceError: useId is not defined
+    at Star (app\components\TestimonialsSection.tsx:33:14)
+  31 |
+  32 | function Star({ fill }: { fill: number }) {
+> 33 |   const id = useId().replace(/:/g, "");
+     |              ^
+  34 |   return (
+  35 |     <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+  36 |       <defs> {
+  digest: '3249967039'
+}
+ GET / 500 in 674ms
+ ✓ Compiled in 342ms (622 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET / 200 in 527ms
+ ✓ Compiled in 326ms (632 modules)
+ GET / 200 in 207ms
+ GET / 200 in 459ms
+ GET / 200 in 141ms
+ GET / 200 in 208ms
+ ✓ Compiled in 371ms (622 modules)
+ ✓ Compiled in 399ms (632 modules)
+ GET / 200 in 136ms
+ ✓ Compiled in 568ms (653 modules)
+ GET / 200 in 140ms
+ ✓ Compiled in 539ms (644 modules)
+ GET / 200 in 259ms
+ ✓ Compiled in 246ms (634 modules)
+ GET / 200 in 361ms
+ GET / 200 in 203ms
+ GET / 200 in 173ms
+ ✓ Compiled in 583ms (648 modules)
+ GET / 200 in 197ms
+ GET / 200 in 345ms
+ ✓ Compiled in 494ms (634 modules)
+ ✓ Compiled in 249ms (634 modules)
+ ✓ Compiled in 509ms (644 modules)
+ GET / 200 in 251ms
+ GET / 200 in 512ms
+ ✓ Compiled in 271ms (634 modules)
+ ✓ Compiled in 234ms (634 modules)
+ GET / 200 in 353ms
+ ✓ Compiled in 539ms (644 modules)
+ GET / 200 in 320ms
+ GET / 200 in 265ms
+ ✓ Compiled in 313ms (644 modules)
+ GET / 200 in 219ms
+ ✓ Compiled in 310ms (634 modules)
+ GET / 200 in 584ms
+ GET / 200 in 321ms
+ ✓ Compiled in 405ms (634 modules)
+ ✓ Compiled in 168ms (644 modules)
+ GET / 200 in 114ms
+ ✓ Compiled in 358ms (634 modules)
+ ✓ Compiled in 172ms (634 modules)
+ GET / 200 in 324ms

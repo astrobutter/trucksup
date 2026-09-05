@@ -1,0 +1,144 @@
+.section {
+  padding: 90px 0;
+}
+
+.head {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.arrow {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.track {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  overflow: hidden;
+}
+
+.card {
+  background: #0b1424;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  position: relative;
+}
+
+.quote {
+  position: absolute;
+  top: -18px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.name {
+  font-size: 16px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.role {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-body);
+  min-height: 140px;
+}
+
+.stars {
+  margin-top: 16px;
+  display: flex;
+  gap: 3px;
+}
+
+.dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 32px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  padding: 0;
+  transition: width 0.25s ease, background 0.25s ease;
+}
+
+.dotActive {
+  width: 24px;
+  background: #fff;
+}
+
+@media (max-width: 900px) {
+  .track {
+    grid-template-columns: 1fr;
+  }
+}

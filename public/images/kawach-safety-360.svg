@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="360" viewBox="0 0 500 360">
+  <rect width="500" height="360" fill="#123a5e"/>
+  <g stroke="#e2e8f0" stroke-opacity="0.25" stroke-width="1">
+    <line x1="0" y1="0" x2="500" y2="360"/>
+    <line x1="500" y1="0" x2="0" y2="360"/>
+  </g>
+  <rect x="0.5" y="0.5" width="499" height="359" fill="none" stroke="#e2e8f0" stroke-opacity="0.35"/>
+  <text x="50%" y="50%" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="23" text-anchor="middle" dominant-baseline="middle">Safety 360 Trucks</text>
+</svg>

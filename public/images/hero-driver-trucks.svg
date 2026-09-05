@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="700" viewBox="0 0 900 700">
+  <rect width="900" height="700" fill="#1b1240"/>
+  <g stroke="#e2e8f0" stroke-opacity="0.25" stroke-width="1">
+    <line x1="0" y1="0" x2="900" y2="700"/>
+    <line x1="900" y1="0" x2="0" y2="700"/>
+  </g>
+  <rect x="0.5" y="0.5" width="899" height="699" fill="none" stroke="#e2e8f0" stroke-opacity="0.35"/>
+  <text x="50%" y="50%" fill="#e2e8f0" font-family="Arial, sans-serif" font-size="41" text-anchor="middle" dominant-baseline="middle">Brand Ambassador + Truck Fleet</text>
+</svg>

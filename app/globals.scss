@@ -1,0 +1,110 @@
+:root {
+  --font-heading: "Baloo 2", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  /* Core palette sampled from the source design */
+  --bg-page: #070c15;
+  --bg-navy: #09101a;
+  --bg-navy-soft: #0f1a2a;
+  --bg-card: #0b1424;
+  --bg-card-alt: #0e1729;
+
+  --purple: #5f36d0;
+  --purple-strong: #4a29ab;
+  --purple-light: #c8c1f4;
+  --purple-pale: #e3dff9;
+  --blue-accent: #0449e1;
+
+  --text-white: #fdfdfd;
+  --text-body: #cbd4e1;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --divider: #e2e8f0;
+
+  --container-w: 1320px;
+  --radius-lg: 24px;
+  --radius-md: 16px;
+  --radius-sm: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-page);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-heading);
+  color: var(--text-white);
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-w);
+  margin: 0 auto;
+  padding: 0 40px;
+}
+
+.sectionLabel {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 40px;
+  text-align: center;
+  color: var(--text-white);
+}
+
+.sectionSub {
+  font-family: var(--font-body);
+  font-size: 16px;
+  color: var(--text-body);
+  text-align: center;
+  max-width: 700px;
+  margin: 16px auto 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .container {
+    padding: 0 20px;
+  }
+  .sectionLabel {
+    font-size: 28px;
+  }
+}
