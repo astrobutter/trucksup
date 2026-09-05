@@ -70,20 +70,38 @@ export default function SpotlightSection() {
     const { gsap } = getGsap();
 
     const distance = track.scrollWidth / 2;
-    const tween = gsap.to(track, {
-      x: -distance,
-      duration: distance / 45,
-      ease: "none",
-      repeat: -1,
-    });
+    const speed = 45; // px/sec
 
-    const pause = () => tween.pause();
-    const play = () => tween.play();
+    // Driven by real elapsed time via setInterval rather than GSAP's
+    // rAF-based ticker: this loop never reaches a final state (repeat: -1),
+    // so a gsap.to() tween here has no moment to apply a "safety net" fallback
+    // to - if requestAnimationFrame is throttled to near-zero (a backgrounded
+    // tab, or a browser tab suspended after switching away), the marquee
+    // would just freeze at whatever position it was at instead of continuing
+    // to loop. A plain setInterval computing position from wall-clock time
+    // doesn't depend on rAF, so it keeps advancing regardless.
+    let pos = 0;
+    let playing = true;
+    let lastTime = Date.now();
+    const interval = window.setInterval(() => {
+      const now = Date.now();
+      const dt = (now - lastTime) / 1000;
+      lastTime = now;
+      if (!playing) return;
+      pos = (pos + speed * dt) % distance;
+      gsap.set(track, { x: -pos });
+    }, 40);
+
+    const pause = () => (playing = false);
+    const play = () => {
+      lastTime = Date.now();
+      playing = true;
+    };
     section.addEventListener("mouseenter", pause);
     section.addEventListener("mouseleave", play);
 
     const observer = new IntersectionObserver(
-      ([entry]) => (entry.isIntersecting ? tween.play() : tween.pause()),
+      ([entry]) => (entry.isIntersecting ? play() : pause()),
       { threshold: 0 }
     );
     observer.observe(section);
@@ -92,7 +110,7 @@ export default function SpotlightSection() {
       section.removeEventListener("mouseenter", pause);
       section.removeEventListener("mouseleave", play);
       observer.disconnect();
-      tween.kill();
+      window.clearInterval(interval);
     };
   }, []);
 

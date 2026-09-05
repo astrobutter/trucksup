@@ -52,6 +52,7 @@ export default function Hero() {
 
   useEffect(() => {
     const { gsap } = getGsap();
+    let fallback: number | undefined;
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ delay: 0.15 });
       tl.from(`.${styles.line1}`, { y: 30, opacity: 0, duration: 0.7, ease: "power3.out" })
@@ -59,8 +60,32 @@ export default function Hero() {
         .from(`.${styles.actions} > *`, { y: 20, opacity: 0, duration: 0.6, stagger: 0.12, ease: "power3.out" }, "-=0.3")
         .from(`.${styles.socialBtn}`, { y: 16, opacity: 0, duration: 0.5, stagger: 0.08, ease: "power3.out" }, "-=0.3")
         .from(`.${styles.imageWrap}`, { opacity: 0, scale: 0.94, duration: 0.9, ease: "power3.out" }, "-=0.7");
+
+      // Safety net: this whole entrance relies on requestAnimationFrame to
+      // progress, which browsers can pause entirely for a backgrounded tab
+      // (e.g. a link opened in a background tab). If that happens, every
+      // element the timeline starts from opacity:0 would stay invisible
+      // forever — including the headline, CTAs and hero image. A native
+      // timer doesn't depend on rAF, so it fires regardless and forces the
+      // final visible state no matter what GSAP's ticker is doing.
+      fallback = window.setTimeout(() => {
+        gsap.set(
+          [
+            `.${styles.line1}`,
+            `.${styles.line2}`,
+            `.${styles.actions} > *`,
+            `.${styles.socialBtn}`,
+            `.${styles.imageWrap}`,
+          ],
+          { clearProps: "opacity,transform" }
+        );
+      }, 4000);
+      tl.eventCallback("onComplete", () => window.clearTimeout(fallback));
     }, scope);
-    return () => ctx.revert();
+    return () => {
+      window.clearTimeout(fallback);
+      ctx.revert();
+    };
   }, []);
 
   return (

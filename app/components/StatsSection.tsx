@@ -22,9 +22,12 @@ export default function StatsSection() {
     const values = section.querySelectorAll<HTMLElement>(`.${styles.value}`);
     const triggers: ScrollTrigger[] = [];
 
+    const fallbacks: number[] = [];
+
     values.forEach((el, i) => {
       const stat = STATS[i];
       const counter = { n: 0 };
+      const finalText = () => stat.value.toFixed(stat.decimals) + stat.suffix;
       const tween = gsap.to(counter, {
         n: stat.value / stat.divisor,
         duration: 1.6,
@@ -37,11 +40,24 @@ export default function StatsSection() {
         onUpdate: () => {
           el.textContent = counter.n.toFixed(stat.decimals) + stat.suffix;
         },
+        onStart: () => {
+          // Safety net: this counter's progress depends on requestAnimationFrame,
+          // which can be paused entirely for a backgrounded tab. Without this,
+          // the stat would stay stuck at "0" forever instead of its real value.
+          const id = window.setTimeout(() => {
+            el.textContent = finalText();
+          }, 2500);
+          fallbacks.push(id);
+          tween.eventCallback("onComplete", () => window.clearTimeout(id));
+        },
       });
       if (tween.scrollTrigger) triggers.push(tween.scrollTrigger);
     });
 
-    return () => triggers.forEach((t) => t.kill());
+    return () => {
+      fallbacks.forEach((id) => window.clearTimeout(id));
+      triggers.forEach((t) => t.kill());
+    };
   }, []);
 
   return (

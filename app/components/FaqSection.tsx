@@ -75,10 +75,23 @@ function AccordionItem({ q, a }: { q: string; a: string }) {
     const next = !open;
     setOpen(next);
 
+    const targetHeight = next ? inner.offsetHeight : 0;
+
+    // Safety net: this height/rotate tween runs on GSAP's requestAnimationFrame
+    // ticker, which browsers can pause entirely for a backgrounded tab. Without
+    // this, clicking a question while rAF is stalled would flip `open` but the
+    // panel would stay visually collapsed (height stuck at its starting value)
+    // forever. A native timer forces the end state regardless of rAF.
+    const fallback = window.setTimeout(() => {
+      gsap.set(outer, { height: targetHeight });
+      gsap.set(icon, { rotate: next ? 45 : 0 });
+    }, 600);
+
     gsap.to(outer, {
-      height: next ? inner.offsetHeight : 0,
+      height: targetHeight,
       duration: 0.4,
       ease: "power2.inOut",
+      onComplete: () => window.clearTimeout(fallback),
     });
     gsap.to(icon, {
       rotate: next ? 45 : 0,
