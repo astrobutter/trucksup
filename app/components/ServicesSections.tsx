@@ -1,17 +1,16 @@
-import Reveal from "./Reveal";
 import ServicePanel from "./ServicePanel";
 import ServiceCard from "./ServiceCard";
 import styles from "./ServicesSections.module.scss";
 
 export function ServicesIntro() {
   return (
-    <Reveal className={`container ${styles.intro}`} from="up">
+    <div className={`container ${styles.intro}`}>
       <h2 className="sectionLabel">Everything Your Fleet Needs, Together</h2>
       <p className="sectionSub">
         Trucksup Max is the only platform that combines fuel management, toll automation, vehicle
         tracking, load board, insurance and route calculation into one dashboard.
       </p>
-    </Reveal>
+    </div>
   );
 }
 

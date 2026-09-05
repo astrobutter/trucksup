@@ -12,10 +12,9 @@
 
 .scrolled {
   padding: 16px 0;
-  background: rgba(7, 12, 21, 0.82);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: #0c1524;
+  box-shadow: 0 8px 24px -8px rgba(0, 0, 0, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .inner {
