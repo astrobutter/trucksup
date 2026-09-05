@@ -43,6 +43,11 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   overflow: hidden;
+  // The quote badge on each card sits at top:-18px, poking above the card's
+  // own box. Without this padding, .track's overflow:hidden (needed to mask
+  // the slide/fade transition) clips the top of that badge off.
+  padding-top: 22px;
+  margin-top: -22px;
 }
 
 .card {

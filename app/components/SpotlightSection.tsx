@@ -1,3 +1,7 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { getGsap } from "../lib/gsap";
 import Reveal from "./Reveal";
 import styles from "./SpotlightSection.module.scss";
 
@@ -34,31 +38,78 @@ const ARTICLES = [
   },
 ];
 
-export default function SpotlightSection() {
+function Cards() {
   return (
-    <section className={styles.section}>
+    <div className={styles.set}>
+      {ARTICLES.map((a, i) => (
+        <article className={styles.card} key={`${a.source}-${i}`}>
+          <div className={styles.imageFrame}>
+            <img src={a.image} alt={a.alt} loading="lazy" />
+          </div>
+          <div className={styles.body}>
+            <div className={styles.meta}>
+              <span className={styles.source}>{a.source}</span>
+              <span className={styles.date}>{a.date}</span>
+            </div>
+            <p className={styles.headline}>{a.headline}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+export default function SpotlightSection() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
+    const { gsap } = getGsap();
+
+    const distance = track.scrollWidth / 2;
+    const tween = gsap.to(track, {
+      x: -distance,
+      duration: distance / 45,
+      ease: "none",
+      repeat: -1,
+    });
+
+    const pause = () => tween.pause();
+    const play = () => tween.play();
+    section.addEventListener("mouseenter", pause);
+    section.addEventListener("mouseleave", play);
+
+    const observer = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? tween.play() : tween.pause()),
+      { threshold: 0 }
+    );
+    observer.observe(section);
+
+    return () => {
+      section.removeEventListener("mouseenter", pause);
+      section.removeEventListener("mouseleave", play);
+      observer.disconnect();
+      tween.kill();
+    };
+  }, []);
+
+  return (
+    <section className={styles.section} ref={sectionRef}>
       <div className="container">
         <Reveal className={styles.head} from="up">
           <h2 className="sectionLabel">In the Spotlight</h2>
           <p className="sectionSub">Our work, stories, and milestones making an impact in the news.</p>
         </Reveal>
+      </div>
 
-        <Reveal className={styles.grid} from="up" stagger={0.15}>
-          {ARTICLES.map((a) => (
-            <article className={styles.card} key={a.source}>
-              <div className={styles.imageFrame}>
-                <img src={a.image} alt={a.alt} loading="lazy" />
-              </div>
-              <div className={styles.body}>
-                <div className={styles.meta}>
-                  <span className={styles.source}>{a.source}</span>
-                  <span className={styles.date}>{a.date}</span>
-                </div>
-                <p className={styles.headline}>{a.headline}</p>
-              </div>
-            </article>
-          ))}
-        </Reveal>
+      <div className={styles.marquee}>
+        <div className={styles.track} ref={trackRef}>
+          <Cards />
+          <Cards />
+        </div>
       </div>
     </section>
   );

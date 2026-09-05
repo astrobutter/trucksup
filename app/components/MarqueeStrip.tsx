@@ -43,7 +43,16 @@ export default function MarqueeStrip() {
       repeat: -1,
     });
 
+    // Pause while off-screen so it doesn't keep compositing forever as the
+    // user scrolls deep into the page.
+    const observer = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? tween.play() : tween.pause()),
+      { threshold: 0 }
+    );
+    observer.observe(el);
+
     return () => {
+      observer.disconnect();
       tween.kill();
     };
   }, []);

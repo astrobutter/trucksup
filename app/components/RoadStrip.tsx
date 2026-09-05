@@ -31,7 +31,24 @@ export default function RoadStrip() {
       repeat: -1,
     });
 
+    // Pause both loops while off-screen so they don't keep compositing
+    // forever as the user scrolls deep into the page.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          truckTween.play();
+          laneTween.play();
+        } else {
+          truckTween.pause();
+          laneTween.pause();
+        }
+      },
+      { threshold: 0 }
+    );
+    observer.observe(road);
+
     return () => {
+      observer.disconnect();
       truckTween.kill();
       laneTween.kill();
     };

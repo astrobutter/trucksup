@@ -43,20 +43,31 @@ export default function SectionDock() {
     );
     if (elements.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActive(entry.target.id);
-          }
-        });
-        setVisible(entries.some((e) => e.isIntersecting));
-      },
-      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
-    );
+    // Scroll-spy via getBoundingClientRect on scroll, mirroring Header's own
+    // scroll-position check. IntersectionObserver callbacks can be throttled
+    // or deferred by the browser (e.g. for a backgrounded tab), so we don't
+    // rely on it for something users see update live.
+    const line = 160;
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const compute = () => {
+      let current: HTMLElement | null = null;
+      for (const el of elements) {
+        const rect = el.getBoundingClientRect();
+        if (rect.top <= line && rect.bottom > line) {
+          current = el;
+        }
+      }
+      setActive(current?.id ?? null);
+      setVisible(current !== null);
+    };
+
+    compute();
+    window.addEventListener("scroll", compute, { passive: true });
+    window.addEventListener("resize", compute);
+    return () => {
+      window.removeEventListener("scroll", compute);
+      window.removeEventListener("resize", compute);
+    };
   }, []);
 
   return (
